@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Project to use datatables using ASP.NET C# on the server side">
+    <meta name="author" content="Edwin Ortega">
+
+    <title>JQuery Datatables.Net ASP.NET sample project</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/custom.css" rel="stylesheet" />    
+    
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/u/bs/jszip-2.5.0,pdfmake-0.1.18,dt-1.10.12,b-1.2.0,b-html5-1.2.0,b-print-1.2.0/datatables.min.css"/>
+    <link href="css/bootstrap-datepicker3.min.css" rel="stylesheet" />
+
+</head>
+
+<body>
+    <form method="post" action="./" id="form1">
+<div class="aspNetHidden">
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="slQTnURQt3pWgYVJWvzC4tdmGXtuL8bGXMdBIUpcgvG47+uHl8UFg+7i3BdVy/NLdKZ/vATrD3qiUAatBkplbKPyNznIJWTNkfGQT9zXcxg=" />
+</div>
+
+<div class="aspNetHidden">
+
+	<input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="422B7C9D" />
+</div>
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="Default.aspx">Main</a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="About.aspx">About</a>
+                    </li>                    
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <!-- Page Content -->
+    <div class="container">
+        
+    <div class="row">
+            <div class="col-lg-12 text-center">
+                <h1>Datables.net JQuery Plugin on ASP.NET</h1>
+                <p class="lead">WebForms Sample</p>
+                <ul class="list-unstyled">
+                    <li>Bootstrap v3.3.6</li>
+                    <li>jQuery v1.12.4</li>
+                    <li>Datatables v1.10.12</li>
+                </ul>
+            </div>
+        </div>
+    <div class="row">
+        <div class="col-lg-12 text-right">
+            <button type="button" class="btn btn-primary btn-lg" id="CustomerInfoPopup">Add Customer</button>              
+        </div>
+    </div>
+    <br />
+    <table id="Customer-Info" class="table-striped">
+        <thead>
+            <tr>                
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Birthday</th>
+                <th>email</th>
+                <th>Phone</th>
+                <th>Company</th>
+                <th>Zip Code</th>
+                <th>Number of Purchases</th>                
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>            
+        </tbody>            
+    </table>
+
+    <!-- add/edit popup window -->
+    <div class="modal fade" id="addEditCustomer" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">                
+                    <h4 class="modal-title" id="myModalLabel">Add/Edit Customer</h4>
+                </div>
+                <div class="modal-body">
+                    <fieldset>
+                <!-- Form Name -->
+                <!-- Text input-->
+                <label class="control-label col-sm-5" for="firstname">First Name: </label>
+                <div class="input-group col-sm-7">
+                    <input id="firstname" name="firstname" type="text" class="input-xlarge">
+                </div><br />
+                <label class="control-label col-sm-5" for="lastname">Last Name: </label>
+                <div class="input-group col-sm-7">
+                    <input id="lastname" name="lastname" type="text" class="input-xlarge">
+                </div><br />
+                <label class="control-label col-sm-5" for="BirthDate">Birth Date: </label>
+                <div class="input-group col-sm-7">
+                    <input id="BirthDate" name="BirthDate" type="text" class="input-xlarge">
+                </div><br />
+                <label class="control-label col-sm-5" for="Email">Email: </label>
+                <div class="input-group col-sm-7">
+                    <input id="Email" name="Email" type="text" class="input-xlarge">
+                </div><br />
+                <label class="control-label col-sm-5" for="Phone">Phone: </label>
+                <div class="input-group col-sm-7">
+                    <input id="Phone" name="Phone" type="text" class="input-xlarge">
+                </div><br />
+                <label class="control-label col-sm-5" for="Company">Company: </label>
+                <div class="input-group col-sm-7">
+                    <input id="Company" name="Company" type="text" class="input-xlarge">
+                </div><br />
+                <label class="control-label col-sm-5" for="Zip">Zip Code: </label>
+                <div class="input-group col-sm-7">
+                    <input id="Zip" name="Zip" type="text" class="input-xlarge">
+                </div> 
+                        <input type="hidden" id="currentID" value="" />                         
+            </fieldset>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="AddCustomerButton">Save changes</button>
+            </div>
+        </div>
+      </div>
+    </div>    
+    <!-- end popup window -->
+
+    </div>
+    </form>
+<!-- jQuery Version 1.12.4 -->
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/u/bs/jszip-2.5.0,pdfmake-0.1.18,dt-1.10.12,b-1.2.0,b-html5-1.2.0,b-print-1.2.0/datatables.min.js"></script>
+       
+    <script src="js/bootstrap-datepicker.min.js"></script>
+    <script src="js/Default.js"></script>
+    <script src="js/moment.min.js"></script>
+
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-1090328-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+</body>
+
+</html>
